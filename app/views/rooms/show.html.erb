@@ -1,12 +1,24 @@
-<%= turbo_stream_from @room %>
+<%#= turbo_stream_from @room %>
+<%#= turbo_stream_from [current_user, @room] %>
 
-<p style="color: green"><%= notice %></p>
-
-<%= render @room %>
-
-<div>
-  <%= link_to "Edit this room", edit_room_path(@room) %> |
-  <%= link_to "Back to rooms", rooms_path %>
-
-  <%= button_to "Destroy this room", @room, method: :delete %>
+<div class="container-fluid">
+  <div class="row justify-content-between">
+    <div class="col-12 col-md-8 mt-3">
+      <div class="card h-96">
+        <div class="card-body overflow-auto" id="chat-container">
+          <%= render partial: "messages/message", collection: @messages, locals: { user: current_user } %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<%= form_with model: @new_message, data: { controller: "chat_refresh", action: "turbo:submit-end->chat_refresh#clearInput" } do |f| %>
+  <div class="input-group mt-3">
+    <%= f.text_field :body, autofocus: true, required: true, placeholder: "Your text", class: "form-control" %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <div class="input-group-append">
+      <%= f.submit "Send", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

@@ -1,7 +1,6 @@
-<div id="<%= dom_id room %>">
+<div id="<%= dom_id @room %>">
   <p>
     <strong>Name:</strong>
-    <%= room.name %>
+    <%= link_to @room.name, rooms_path(@room.id) %>
   </p>
-
 </div>

@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-
   before_action :set_room, only: %i[new create]
 
   def new
@@ -8,10 +7,16 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @room.messages.create!(message_params)
+    @message = @room.messages.build(message_params)
+    @message.user = current_user
+    @room = Room.find(params[:room_id])
 
     respond_to do |format|
-      format.html { redirect_to @room }
+      if @message.save
+        format.turbo_stream { render turbo_stream: turbo_stream.append('messages', partial: 'messages/message', locals: { message: @message }) }
+      else
+        format.html { render :new }
+      end
     end
   end
 

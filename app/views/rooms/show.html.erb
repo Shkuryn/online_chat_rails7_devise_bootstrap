@@ -1,24 +1,23 @@
-<%#= turbo_stream_from @room %>
-<%#= turbo_stream_from [current_user, @room] %>
+<%= turbo_stream_from @room %>
+<%= turbo_stream_from [current_user, @room] %>
 
-<div class="container-fluid">
-  <div class="row justify-content-between">
-    <div class="col-12 col-md-8 mt-3">
-      <div class="card h-96">
-        <div class="card-body overflow-auto" id="chat-container">
-          <%= render partial: "messages/message", collection: @messages, locals: { user: current_user } %>
-        </div>
-      </div>
-    </div>
+<main class="container">
+  <div class="header">
+    <h1><%= @room.name %></h1>
   </div>
-</div>
 
-<%= form_with model: @new_message, data: { controller: "chat_refresh", action: "turbo:submit-end->chat_refresh#clearInput" } do |f| %>
-  <div class="input-group mt-3">
-    <%= f.text_field :body, autofocus: true, required: true, placeholder: "Your text", class: "form-control" %>
-    <%= f.hidden_field :room_id, value: @room.id %>
-    <div class="input-group-append">
-      <%= f.submit "Send", class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
+  <h2>Messages</h2>
+
+  <ul id="messages">
+    <% @room.messages.each do |message| %>
+      <%= render 'messages/message', message: message %>
+    <% end %>
+  </ul>
+
+  <%= turbo_frame_tag @room.messages.build do %>
+    <%= render 'messages/message', message: @room.messages.build %>
+  <% end %>
+</main>
+
+<%= render 'messages/create_message' %>
+

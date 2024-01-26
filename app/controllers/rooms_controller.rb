@@ -8,8 +8,8 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1 or /rooms/1.json
   def show
-    @room = Room.find(params[:id])
     @messages = @room.messages
+    @message = current_user&.messages&.build(room: @room)
   end
 
   # GET /rooms/new

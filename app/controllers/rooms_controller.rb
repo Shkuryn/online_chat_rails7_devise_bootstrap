@@ -28,10 +28,9 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.save
         @room.broadcast_append_to :rooms
-        format.turbo_stream do
-          # Rails.logger.info("FROM CONTROLLER")
-          @room.broadcast_append_to :rooms
-        end
+        # format.turbo_stream do
+        #   @room.broadcast_append_to :rooms
+        # end
         format.html { redirect_to room_url(@room), notice: "Room was successfully created." }
         format.json { render :show, status: :created, location: @room }
       else

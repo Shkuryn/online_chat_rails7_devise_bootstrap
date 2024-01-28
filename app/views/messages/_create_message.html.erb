@@ -1,6 +1,8 @@
 <div class="container">
+<div class="messages_container">
       <%= form_with(model: [@room, @message], local: false, data: { turbo_frame: 'new_message' }) do |form| %>
         <%= form.text_field :content, class: 'col-11', placeholder: 'write your clever message here' %>
         <%= form.submit "Send", data: { turbo_frame: 'new_message' } %>
       <% end %>
+</div>
 </div>

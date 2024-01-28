@@ -7,16 +7,11 @@ class MessagesController < ApplicationController
   end
 
   def create
+    @room = Room.find(params[:room_id])
     @message = @room.messages.build(message_params)
     @message.user = current_user
-    @room = Room.find(params[:room_id])
-
-    respond_to do |format|
-      if @message.save
-        format.turbo_stream { render turbo_stream: turbo_stream.append('messages', partial: 'messages/message', locals: { message: @message }) }
-      else
-        format.html { render :new }
-      end
+    if @message.save
+      @message.broadcast_append_to @room
     end
   end
 

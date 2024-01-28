@@ -1,12 +1,8 @@
 <%= turbo_stream_from @room %>
-<%= turbo_stream_from [current_user, @room] %>
-
 <main class="container">
   <div class="header">
     <h1><%= @room.name %></h1>
   </div>
-
-  <h2>Messages</h2>
 
   <ul id="messages">
     <% @room.messages.each do |message| %>
@@ -14,10 +10,10 @@
     <% end %>
   </ul>
 
-  <%= turbo_frame_tag @room.messages.build do %>
-    <%= render 'messages/message', message: @room.messages.build %>
-  <% end %>
+  <%#= turbo_frame_tag @room.messages.build do %>
+  <%#= render 'messages/message', message: @room.messages.build %>
+  <%# end %>
 </main>
-
 <%= render 'messages/create_message' %>
+
 

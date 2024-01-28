@@ -8,6 +8,8 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1 or /rooms/1.json
   def show
+    @messages = @room.messages
+    @message = current_user&.messages&.build(room: @room)
   end
 
   # GET /rooms/new
@@ -25,10 +27,9 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        Rails.logger.info("FROM CONTROLLER")
         @room.broadcast_append_to :rooms
         format.turbo_stream do
-          Rails.logger.info("FROM CONTROLLER")
+          # Rails.logger.info("FROM CONTROLLER")
           @room.broadcast_append_to :rooms
         end
         format.html { redirect_to room_url(@room), notice: "Room was successfully created." }

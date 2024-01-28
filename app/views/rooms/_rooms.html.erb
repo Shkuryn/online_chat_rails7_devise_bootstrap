@@ -1,0 +1,19 @@
+<div class="container">
+  <table class="table table-hover" style="width: 700px">
+    <thead>
+    <tr>
+      <th class="block" style="width:70%"><%= :name %></th>
+      <th class="block" style="width:10%"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @rooms.each do |room| %>
+      <tr class="text-success fw-bold">
+        <td><%= link_to room.name, room_path(room) %></td>
+        <td></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= link_to "New room", new_room_path %>
+</div>

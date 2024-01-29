@@ -1,19 +1,16 @@
 <%= turbo_stream_from @room %>
 <main class="container">
-  <div class="header">
-    <h1><%= @room.name %></h1>
+  <div class="header text-center">
+    <h1 class="text-danger"><%= @room.name %></h1>
   </div>
-
+  <div class="messages_container">
   <ul id="messages">
     <% @room.messages.each do |message| %>
       <%= render 'messages/message', message: message %>
     <% end %>
   </ul>
-
-  <%#= turbo_frame_tag @room.messages.build do %>
-  <%#= render 'messages/message', message: @room.messages.build %>
-  <%# end %>
+  </div>
 </main>
 <%= render 'messages/create_message' %>
-
+</div>
 

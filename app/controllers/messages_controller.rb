@@ -10,8 +10,10 @@ class MessagesController < ApplicationController
     @room = Room.find(params[:room_id])
     @message = @room.messages.build(message_params)
     @message.user = current_user
+    @user = current_user
+
     if @message.save
-      @message.broadcast_append_to @room
+      @message.broadcast_append_to @room, locals: { user: @user }
     end
   end
 

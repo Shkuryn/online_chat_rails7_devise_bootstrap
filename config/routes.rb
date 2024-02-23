@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options host: 'localhost'
   get 'messages/index'
   get 'messages/new'
   get 'messages/create'

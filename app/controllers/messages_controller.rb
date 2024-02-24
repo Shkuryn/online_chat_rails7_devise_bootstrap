@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
 
     if @message.save
       @message.broadcast_append_to @room, locals: { user: @user }
+      redirect_to room_path(@room)
     end
   end
 

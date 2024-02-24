@@ -17,28 +17,14 @@ Then("I should see room's title {string}") do |content|
 end
 
 When("I fill in {string} with {string} within {string}") do |field, value, selector|
-
-  sleep 2
-  # within('new_messages_container') do
-  #   find('#message_content').set(value)
-  # end
-
-  if page.has_selector?('#message_content')
-    find('#message_content').set(value)
-    # puts 'Element found: ok'
-  else
-    # puts 'Element not found: fail'
-  end
-
+   find('#message_content').set(value)
 end
 
 When("I press {string} button") do |button|
-  # within(selector) do
-  Rails.logger.info("USERS= #{User.count}")
-    click_button(button)
-  # end
+  click_button(button)
 end
 
 Then("I should see {string} among the messages in the room") do |message|
-  expect(page).to have_css(".message", text: message)
+  expect(page).to have_css(".card-body.d-flex.flex-row", text: message)
+  expect(Message.count).to eq(1)
 end

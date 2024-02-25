@@ -1,5 +1,5 @@
 Given('there is a user with email {string} and password {string}') do |email, password|
-  FactoryBot.create(:user, email: email, password: password)
+  FactoryBot.create(:user, email: email, password: password, username: email.split("@").first)
 end
 
 Given("I am on the login page") do

@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
     @user = current_user
 
     if @message.save
-      @message.broadcast_append_to @room, locals: { user: @user }
+      @message.broadcast_append_to @room, locals: { current_user: @user }
       redirect_to room_path(@room)
     end
   end

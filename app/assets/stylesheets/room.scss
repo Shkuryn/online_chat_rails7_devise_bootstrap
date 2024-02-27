@@ -1,8 +1,21 @@
 .messages_container{
-  background-color: #c0c061;
+  background-color: #041e4d;
   padding: 20px;
 }
 .my-message {
   background-color: #0d6efd;
   color: #fff;
+  text-align: right;
 }
+
+.user-message {
+  background-color: #2b2d30;
+  color: #fff;
+  text-align: left;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 16px;
+}
+

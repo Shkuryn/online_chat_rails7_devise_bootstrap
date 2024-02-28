@@ -9,8 +9,7 @@
     <tbody>
     <% @rooms.each do |room| %>
       <tr class="text-success fw-bold">
-        <td><%= link_to room.name, room_path(room) %></td>
-        <td></td>
+        <td><%= link_to room.decorate.display_name, room_path(room) %></td>
       </tr>
     <% end %>
     </tbody>

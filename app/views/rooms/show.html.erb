@@ -1,7 +1,7 @@
 <%= turbo_stream_from @room %>
 <main class="container">
   <div class="header text-center">
-    <h1 class="text-danger"><%= @room.name unless @room.private%></h1>
+    <h1 class="text-danger"><%= @room.decorate.display_name%></h1>
   </div>
   <div class="messages_container">
   <ul id="messages">

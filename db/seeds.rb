@@ -6,3 +6,8 @@
     confirmed_at: Time.current
   )
 end
+
+All_users = Room.create!(
+  name: "All users",
+  private: false
+)

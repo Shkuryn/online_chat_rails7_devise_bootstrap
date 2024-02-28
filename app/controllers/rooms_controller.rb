@@ -29,9 +29,6 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.save
         @room.broadcast_append_to :rooms
-        # format.turbo_stream do
-        #   @room.broadcast_append_to :rooms
-        # end
         format.html { redirect_to room_url(@room), notice: "Room was successfully created." }
         format.json { render :show, status: :created, location: @room }
       else
@@ -64,13 +61,17 @@ class RoomsController < ApplicationController
     end
   end
 
+  def all_users
+    @room = Room.find_by(name: "All users")
+    @messages = @room.messages
+    @message = current_user&.messages&.build(room: @room)
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def room_params
       params.require(:room).permit(:name)
     end

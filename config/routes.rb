@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root 'pages#home'
   devise_for :users
   resources :rooms do
+    collection do
+      get 'all_users'
+    end
     resources :messages, only: :create
   end
   resources :users, :only => [:index, :show]

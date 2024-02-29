@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'messages/new'
   get 'messages/create'
   get 'messages/update'
-  root 'pages#home'
+  # root 'pages#home'
+  root 'rooms#all_users'
   devise_for :users
   resources :rooms do
     collection do

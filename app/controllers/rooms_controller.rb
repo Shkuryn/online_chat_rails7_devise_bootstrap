@@ -40,24 +40,23 @@ class RoomsController < ApplicationController
 
   # PATCH/PUT /rooms/1 or /rooms/1.json
   def update
-    respond_to do |format|
-      if @room.update(room_params)
-        format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
-        format.json { render :show, status: :ok, location: @room }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
-      end
+    @room = Room.find(params[:id])
+    room_service = RoomUpdater.new(@room)
+    if room_service.update_room_name(room_params[:name])
+      redirect_to @room, notice: 'Room was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /rooms/1 or /rooms/1.json
   def destroy
-    @room.destroy
-
-    respond_to do |format|
-      format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
-      format.json { head :no_content }
+    @room = Room.find(params[:id])
+    room_remover = RoomRemover.new(@room)
+    if room_remover.delete_room
+      redirect_to rooms_url, notice: 'Room was successfully destroyed.'
+    else
+      redirect_to @room, alert: "Cannot delete room with name #{@room.name}"
     end
   end
 

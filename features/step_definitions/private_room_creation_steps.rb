@@ -4,7 +4,6 @@ When('user {string} navigate to the users list') do |username|
   end
 end
 
-
 When('user {string} click to the {string}') do |username, link|
   Capybara.using_session(username) do
     user_link = find("a", text: link)

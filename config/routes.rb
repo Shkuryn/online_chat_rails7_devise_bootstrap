@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   default_url_options host: 'localhost'
   get 'messages/index'
@@ -13,5 +15,5 @@ Rails.application.routes.draw do
     end
     resources :messages, only: :create
   end
-  resources :users, :only => [:index, :show]
+  resources :users, only: %i[index show]
 end

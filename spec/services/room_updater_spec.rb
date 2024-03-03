@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RoomUpdater do
   describe '#update_room_name' do
     let(:room) { instance_double('Room', name: room_name, update: true) }
-    let(:updater)  { RoomUpdater.new(room) }
+    let(:updater) { RoomUpdater.new(room) }
 
     context 'when room name is not "All users"' do
       let(:room_name)  { 'Test Room' }

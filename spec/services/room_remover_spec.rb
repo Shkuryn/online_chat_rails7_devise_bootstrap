@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RoomRemover do
   describe '#delete_room' do
     let(:room) { instance_double('Room', name: room_name, destroy: true) }
-    let(:remover)  { RoomRemover.new(room) }
+    let(:remover) { RoomRemover.new(room) }
 
     context 'when room name is not "All users"' do
       let(:room_name)  { 'Test Room' }

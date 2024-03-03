@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - 'config/*'
+    - 'config/*/*'
+    - 'db/migrate/*'
+    - 'db/*'
+    - 'bin/bundle'
+
+Style/Documentation:
+  Enabled: false

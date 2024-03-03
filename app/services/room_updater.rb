@@ -8,7 +8,7 @@ class RoomUpdater
   def update_room_name(name)
     return false if room.name == 'All users'
 
-    room.update(name: name)
+    room.update(name:)
   end
 
   private

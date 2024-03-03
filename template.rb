@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Ensure copy_file actions have this dir as a source path
 source_paths.unshift(File.dirname(__FILE__))
 
@@ -34,10 +36,11 @@ rails_command 'db:migrate'
 generate 'controller Pages home'
 
 # Configure the root route
-gsub_file 'config/routes.rb', /get 'pages\/home'/, "root 'pages#home'"
+gsub_file 'config/routes.rb', %r{get 'pages/home'}, "root 'pages#home'"
 
 # Configure the development environment for Action Mailer
-inject_into_file 'config/environments/development.rb', after: "config.action_controller.raise_on_missing_callback_actions = true\n" do
+inject_into_file 'config/environments/development.rb',
+                 after: "config.action_controller.raise_on_missing_callback_actions = true\n" do
   <<-RUBY
   \n
   # Configure the default URL for Action Mailer (required for Devise)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RoomDecorator do
@@ -10,7 +12,7 @@ RSpec.describe RoomDecorator do
       let(:room) { create(:room, name: "#{user1.id}_#{user2.id}", private: true) }
 
       it 'returns formatted display name with usernames' do
-        expect(room_decorator.display_name).to eq("Private room users user1 and user2")
+        expect(room_decorator.display_name).to eq('Private room users user1 and user2')
       end
     end
 

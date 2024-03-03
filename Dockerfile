@@ -15,11 +15,11 @@ RUN bundle install
 
 RUN npm install --global yarn
 
-RUN bundle exec rake assets:precompile
+#RUN bundle exec rake assets:precompile
+####
+#RUN rails db:prepare
+#RUN rails db:migrate
+#RUN rails db:seed
 ###
-RUN rails db:prepare
-RUN rails db:migrate
-RUN rails db:seed
-##
-## Команда по умолчанию для запуска приложения
-CMD ["rails", "server", "-b", "0.0.0.0"]
+#CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bin/dev"]

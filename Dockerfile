@@ -15,11 +15,5 @@ RUN bundle install
 
 RUN npm install --global yarn
 
-#RUN bundle exec rake assets:precompile
-####
-#RUN rails db:prepare
-#RUN rails db:migrate
-#RUN rails db:seed
-###
 CMD ["rails", "server", "-b", "0.0.0.0"]
 #CMD ["bin/dev"]

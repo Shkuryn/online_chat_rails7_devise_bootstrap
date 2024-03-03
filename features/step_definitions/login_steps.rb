@@ -3,7 +3,7 @@ Given('there is a user with email {string} and password {string}') do |email, pa
 end
 
 Given("I am on the login page") do
-  visit new_user_session_path
+  visit root_path
 end
 
 When("I log in with email {string} and password {string}") do |email, password|

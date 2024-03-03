@@ -21,5 +21,5 @@ RUN npm install --global yarn
 #RUN rails db:migrate
 #RUN rails db:seed
 ###
-#CMD ["rails", "server", "-b", "0.0.0.0"]
-CMD ["bin/dev"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
+#CMD ["bin/dev"]

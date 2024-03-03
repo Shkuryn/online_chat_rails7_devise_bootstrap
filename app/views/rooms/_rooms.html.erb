@@ -8,10 +8,12 @@
     </thead>
     <tbody>
     <% @rooms.each do |room| %>
-      <tr class="text-success fw-bold">
-        <td><%= link_to room.name, room_path(room) %></td>
-        <td></td>
-      </tr>
+      <% room_checker = RoomNameChecker.new(room, current_user) %>
+      <% if !room.private? || room_checker.user_in_room? %>
+        <tr class="text-success fw-bold">
+          <td><%= link_to room.decorate.display_name, room_path(room) %></td>
+        </tr>
+      <% end %>
     <% end %>
     </tbody>
   </table>

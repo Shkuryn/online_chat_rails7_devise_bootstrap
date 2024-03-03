@@ -1,24 +1,29 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: %i[new create]
+  before_action :set_room, only: [:new, :create]
 
   def new
     @message = @room.messages.new
   end
 
   def create
-    @room = Room.find(params[:room_id])
     @message = @room.messages.build(message_params)
     @message.user = current_user
+
     if @message.save
-      @message.broadcast_append_to @room
+      @message.broadcast_append_to @room, locals: { current_user: current_user }
+      redirect_to room_path(@room), notice: "Message was successfully created."
+    else
+      flash.now[:alert] = "Failed to create message."
+      render :new
     end
   end
 
   private
 
   def set_room
-    @room = Room.find(params[:room_id])
+    @room = Room.find_by(id: params[:room_id])
+    redirect_to rooms_path, alert: "Room not found." unless @room
   end
 
   def message_params

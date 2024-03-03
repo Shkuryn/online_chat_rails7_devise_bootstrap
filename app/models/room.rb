@@ -1,6 +1,4 @@
 class Room < ApplicationRecord
-  # after_create_commit -> {
-  #   broadcast_append_to :rooms
-  # }
   has_many :messages, dependent: :destroy
+  validates_uniqueness_of :name, case_sensitive: false
 end

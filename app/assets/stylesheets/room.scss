@@ -1,8 +1,51 @@
 .messages_container{
-  background-color: #c0c061;
+  background-color: #041e4d;
   padding: 20px;
 }
 .my-message {
   background-color: #0d6efd;
   color: #fff;
+  text-align: right;
+}
+
+.user-message {
+  background-color: #2b2d30;
+  color: #fff;
+  text-align: left;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 16px;
+}
+.my-message {
+  align-self: flex-end;
+}
+
+.user-message {
+  align-self: flex-start; /* Выравнивание чужих сообщений слева */
+}
+
+.message-container {
+  display: flex;
+  background-color: #041e4d; /* Цвет фона всего контейнера сообщений */
+  margin-bottom: 10px; /* Отступ между сообщениями */
+}
+
+.message-container > div {
+  padding: 10px; /* Отступ внутри сообщения */
+}
+
+.card {
+  border: none;
+  background-color: #041e4d;
+}
+.all-users-room {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: 100vh;
+  background-color: #f0f0f0;
+  z-index: 1000;
 }

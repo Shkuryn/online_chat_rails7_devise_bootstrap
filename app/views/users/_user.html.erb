@@ -1,6 +1,5 @@
-<div id="<%= dom_id user %>">
   <p>
-    <strong>Email:</strong>
-    <%= user.email %>
+    <strong>Name:</strong>
+    <%= link_to user.username, user_path(user) %>
   </p>
-</div>
+

@@ -13,9 +13,20 @@ COPY . .
 
 RUN bundle install
 
-RUN npm install --global yarn
+ARG BUN_VERSION=1.0.15
+
+WORKDIR /build
+
+# Install Bun in the specified version
+RUN apt update && apt install -y bash curl unzip && \
+ curl https://bun.sh/install | bash -s -- bun-v${BUN_VERSION}
+
+ENV PATH="${PATH}:/root/.bun/bin"
+
+COPY . .
+
+RUN bun install
+RUN bun run build
 
 RUN bundle exec rails assets:precompile --quiet
-RUN bundle exec rails db:prepare
 
-CMD ["rails", "server", "-b", "0.0.0.0"]

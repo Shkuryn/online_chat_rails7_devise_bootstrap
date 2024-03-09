@@ -9,11 +9,9 @@ gem 'rails', '~> 7.1.2'
 
 gem 'devise', github: 'heartcombo/devise', branch: 'main'
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+gem 'propshaft'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+gem 'pg'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '>= 5.0'
@@ -31,6 +29,7 @@ gem 'redis', '~> 4.0'
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem 'cssbundling-rails'
+gem 'jsbundling-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
@@ -38,6 +37,7 @@ gem 'jbuilder'
 gem 'draper'
 
 gem 'dotenv'
+gem 'foreman'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

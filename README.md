@@ -10,6 +10,8 @@ Create rails app with devise and bootstrap
 
 1. **run docker-compose up --build**
 
-2. **Open your browser and go to your app**
+2**run docker-compose exec web rails db:prepare**
+
+3**Open your browser and go to your app**
    - [localhost:3001](http://localhost:3001/)
 

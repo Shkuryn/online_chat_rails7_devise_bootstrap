@@ -2,10 +2,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch('POSTGRES_USERNAME', 'online_chat') %>
-  password: <%= ENV.fetch('POSTGRES_PASSWORD', 'online_chat') %>
-  host: postgres
-  port: <%= ENV.fetch('POSTGRES_PORT') { 5433 } %>
+  username: postgres
+  password: password
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
 development:
   <<: *default
   database: online_chat_development

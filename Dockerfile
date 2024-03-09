@@ -29,6 +29,4 @@ RUN bun install
 RUN bun run build
 
 RUN bundle exec rails assets:precompile --quiet
-RUN bundle exec rails db:prepare
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
